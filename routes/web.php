@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Chat\Chat;
 use App\Livewire\Chat\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,6 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::get('chat', Index::class)->name('chat.index');
+Route::get('chat/{query}', Chat::class)->name('chat');
 
 require __DIR__ . '/auth.php';
