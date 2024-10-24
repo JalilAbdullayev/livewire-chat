@@ -24,11 +24,14 @@ class ChatBox extends Component {
             'conversation_id' => $this->selected->id,
             'sender_id' => auth()->user()->id,
             'receiver_id' => $this->selected->getReceiver()->id,
-            'body' => $this->body
+            'body' => $this->body,
         ]);
         $this->reset('body');
         $this->dispatch('scroll-bottom');
         $this->loaded->push($create);
+        $this->selected->updated_at = now();
+        $this->selected->save();
+        $this->dispatch('refresh')->to('chat.chat-list');
     }
 
     public function render() {

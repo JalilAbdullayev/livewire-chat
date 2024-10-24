@@ -2,11 +2,17 @@
 
 namespace App\Livewire\Chat;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ChatList extends Component {
     public $selected;
     public $query;
+
+    #[On('refresh')]
+    public function refresh() {
+        $this->dispatch('scroll-top');
+    }
 
     public function render() {
         $user = auth()->user();
