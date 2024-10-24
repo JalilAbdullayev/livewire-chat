@@ -1,4 +1,4 @@
-<div x-data="{type: 'all', query: @entangle('query')}" x-init="setTimeout(() => {
+<div x-data="{type: 'all', query: $wire.entangle('query')}" x-init="setTimeout(() => {
     let element = document.getElementById(query);
     if(element) {
         element.scrollIntoView({

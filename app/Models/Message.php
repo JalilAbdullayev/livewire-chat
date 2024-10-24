@@ -11,6 +11,7 @@ class Message extends Model {
 
     protected $fillable = [
         'body',
+        'conversation_id',
         'sender_id',
         'receiver_id',
         'sender_deleted_at',
@@ -25,7 +26,7 @@ class Message extends Model {
     ];
 
     public function conversation(): BelongsTo {
-        $this->belongsTo(Conversation::class);
+        return $this->belongsTo(Conversation::class);
     }
 
     public function isRead(): bool {
