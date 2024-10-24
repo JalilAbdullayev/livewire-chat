@@ -8,6 +8,7 @@ use Livewire\Component;
 class ChatList extends Component {
     public $selected;
     public $query;
+    protected $listeners = ['refresh' => '$refresh'];
 
     #[On('refresh')]
     public function refresh() {
