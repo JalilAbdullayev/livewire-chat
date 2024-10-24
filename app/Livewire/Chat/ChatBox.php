@@ -9,9 +9,23 @@ class ChatBox extends Component {
     public $selected;
     public $body;
     public $loaded;
+    public int $paginate = 10;
+    protected $listeners = ['loadMore'];
+
+    public function loadMore() {
+        #increment
+        $this->paginate += 10;
+        #call loadMessages
+        $this->loadMessages();
+        #update the height
+        $this->dispatch('update-height');
+    }
 
     public function loadMessages() {
-        $this->loaded = Message::where('conversation_id', $this->selected->id)->get();
+        $count = Message::where('conversation_id', $this->selected->id)->count();
+        $this->loaded = Message::where('conversation_id', $this->selected->id)
+            ->skip($count - $this->paginate)->take($this->paginate)->get();
+        return $this->loaded;
     }
 
     public function mount() {

@@ -19,7 +19,15 @@ $nextTick(() => element.scrollTop = height)" @scroll-bottom.window="$nextTick(()
                 </h6>
             </div>
         </header>
-        <main id="conversation"
+        <main id="conversation" @scroll="
+            scrollTop = $el.scrollTop;
+            if(scrollTop <= 0) {
+                $wire.dispatch('loadMore');
+            }" @update-height.window="
+            newHeight = $el.scrollHeight;
+            oldHeight = height;
+            $el.scrollTop = newHeight - oldHeight;
+            height = newHeight;"
               class="flex flex-col gap-3 p-2.5 overflow-y-auto flex-grow overscroll-contain overflow-x-hidden w-full my-auto">
             @if($loaded)
                 @php($previous = null)
