@@ -4,10 +4,14 @@ namespace App\Livewire\Chat;
 
 use Livewire\Component;
 
-class ChatList extends Component
-{
-    public function render()
-    {
-        return view('livewire.chat.chat-list');
+class ChatList extends Component {
+    public $selected;
+    public $query;
+
+    public function render() {
+        $user = auth()->user();
+        return view('livewire.chat.chat-list', [
+            'conversations' => $user->conversations()->latest('updated_at')->get()
+        ]);
     }
 }

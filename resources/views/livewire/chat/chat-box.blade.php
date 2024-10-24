@@ -12,7 +12,7 @@
                     <x-avatar class="size-9 lg:size-11"/>
                 </div>
                 <h6 class="font-bold truncate">
-                    {{ fake()->name() }}
+                    {{ $selected->getReceiver()->name }}
                 </h6>
             </div>
         </header>

@@ -17,4 +17,11 @@ class Conversation extends Model {
     public function messages(): HasMany {
         return $this->hasMany(Message::class);
     }
+
+    public function getReceiver(): User {
+        if($this->sender_id === auth()->user()->id) {
+            return User::firstWhere('id', $this->receiver_id);
+        }
+        return User::firstWhere('id', $this->sender_id);
+    }
 }
