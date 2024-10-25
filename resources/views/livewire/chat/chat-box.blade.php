@@ -1,7 +1,12 @@
-<div x-data="{height: 0, element: document.getElementById('conversation')}" x-init="
+<div x-data="{height: 0, element: document.getElementById('conversation'), markAsRead: null}" x-init="
 height = element.scrollHeight;
 $nextTick(() => element.scrollTop = element.scrollHeight)"
-     @scroll-bottom.window="$nextTick(() => element.scrollTop = height)"
+     @scroll-bottom.window="$nextTick(() => element.scrollTop = height)
+     Echo.private('users.{{auth()->user()->id}}').notification(notification => {
+         if(notification['type'] === 'App\\Notifications\\MessageRead' || notification['type'] === 'App\\Notifications\\MessageSent') {
+            $wire.dispatch('refresh');
+         }
+     })"
      class="w-full overflow-hidden">
     <div class="border-b flex flex-col overflow-y-scroll grow h-full">
         <header class="sticky w-full inset-x-0 flex py-[5px] top-0 z-10 bg-white border-b">
@@ -54,9 +59,8 @@ $nextTick(() => element.scrollTop = element.scrollHeight)"
                                     {{ $message->created_at->format('g:i') }}
                                 </p>
                                 @if($message->sender_id === auth()->user()->id)
-                                    <div>
-                                        @if($message->isRead())
-                                            <span @class(['text-gray-200'])>
+                                    <div x-data="{markAsRead: {{ (bool)$message->isRead() }}}">
+                                            <span x-cloak x-show="markAsRead" class="text-gray-200">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" viewBox="0 0 16 16">
                                                       <path
@@ -65,15 +69,13 @@ $nextTick(() => element.scrollTop = element.scrollHeight)"
                                                           d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"/>
                                                 </svg>
                                             </span>
-                                        @else
-                                            <span @class(['text-gray-200'])>
+                                        <span x-show="!markAsRead" class="text-gray-200">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" viewBox="0 0 16 16">
                                                       <path
                                                           d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
                                                 </svg>
                                             </span>
-                                        @endif
                                     </div>
                                 @endif
                             </div>

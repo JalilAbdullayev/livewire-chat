@@ -7,7 +7,12 @@
             });
         }
     }, 200);
-}}" x-init="scrollToQuery()" @scroll-top.window="scrollToQuery()"
+}}" x-init="scrollToQuery();
+Echo.private('users.{{auth()->user()->id}}').notification(notification => {
+         if(notification['type'] === 'App\\Notifications\\MessageRead') {
+            markAsRead = true;
+         }
+     })" @scroll-top.window="scrollToQuery()"
      class="flex flex-col transition-all h-full overflow-hidden">
     <header class="px-3 z-10 bg-white sticky top-0 w-full py-2">
         <div class="border-b justify-between flex items-center pb-2">
