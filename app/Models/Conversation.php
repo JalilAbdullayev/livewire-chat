@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Conversation extends Model {
-    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'receiver_id',
@@ -23,6 +24,21 @@ class Conversation extends Model {
             return User::firstWhere('id', $this->receiver_id);
         }
         return User::firstWhere('id', $this->sender_id);
+    }
+
+    public function scopeWhereNotDeleted($query) {
+        $userId = auth()->user()->id;
+        return $query->where(function($query) use ($userId) {
+            #Where message is not deleted
+            $query->whereHas('messages', function($query) use ($userId) {
+                $query->where(function($query) use ($userId) {
+                    $query->where('sender_id', $userId)->orWhereNull('sender_deleted_at');
+                })->orWhere(function($query) use ($userId) {
+                    $query->where('receiver_id', $userId)->orWhereNull('receiver_deleted_at');
+                });
+                #include conversations without messages
+            })->orWhereDoesntHave('messages');
+        });
     }
 
     public function unread(): int {

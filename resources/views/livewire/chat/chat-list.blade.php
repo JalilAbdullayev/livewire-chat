@@ -25,7 +25,7 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                 <svg class="size-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      viewBox="0 0 16 16">
                     <path
-                        d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+                            d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
                 </svg>
             </button>
         </div>
@@ -45,8 +45,8 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
             @if($conversations)
                 @foreach($conversations as $key => $conversation)
                     <li id="{{ $conversation->id }}" wire:key="{{ $conversation->id }}"
-                        @class(["py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2",
-                            'bg-gray-100/70' => $conversation->id === $selected?->id])>
+                            @class(["py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2",
+                                'bg-gray-100/70' => $conversation->id === $selected?->id])>
                         <a href="#" class="shrink-0">
                             <x-avatar src="https://picsum.photos/500/500?random={{$key}}"/>
                         </a>
@@ -68,7 +68,7 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" viewBox="0 0 16 16">
                                           <path
-                                              d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"/>
+                                                  d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"/>
                                           <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"/>
                                         </svg>
                                     </span>
@@ -78,7 +78,7 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                              fill="currentColor"
                                              viewBox="0 0 16 16">
                                           <path
-                                              d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+                                                  d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
                                         </svg>
                                     </span>
                                         @endif
@@ -88,7 +88,7 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                     </p>
                                     @if($conversation->unread() > 0)
                                         <span
-                                            class="font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white">
+                                                class="font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white">
                                             {{ $conversation->unread() }}
                                         </span>
                                     @endif
@@ -102,14 +102,14 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                                  fill="currentColor"
                                                  class="size-7 text-gray-700" viewBox="0 0 16 16">
                                                 <path
-                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                                             </svg>
                                         </button>
                                     </x-slot>
                                     <x-slot name="content">
                                         <div class="w-full p-1">
                                             <button
-                                                class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5
+                                                    class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5
                                                 text-gray-500 hover:bg-gray-100 transition-all duration-150 ease-in-out
                                                 focus:outline-none focus:bg-gray-100">
                                                 <span>
@@ -122,8 +122,9 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                                 </span>
                                                 View Profile
                                             </button>
-                                            <button
-                                                class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5
+                                            <button wire:click="deleteByUser('{{encrypt($conversation->id)}}')"
+                                                    onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
+                                                    class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5
                                                     text-gray-500 hover:bg-gray-100 transition-all duration-150 ease-in-out
                                                     focus:outline-none focus:bg-gray-100">
                                                 <span>
@@ -131,7 +132,7 @@ Echo.private('users.{{auth()->user()->id}}').notification(notification => {
                                                          fill="currentColor" class="bi bi-trash3-fill"
                                                          viewBox="0 0 16 16">
                                                       <path
-                                                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                                              d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
                                                     </svg>
                                                 </span>
                                                 Delete

@@ -42,7 +42,7 @@ class User extends Authenticatable {
     }
 
     public function conversations(): HasMany {
-        return $this->hasMany(Conversation::class, 'sender_id')->orWhere('receiver_id', $this->id);
+        return $this->hasMany(Conversation::class, 'sender_id')->orWhere('receiver_id', $this->id)->orWhereNotDeleted();
     }
 
     public function receivesBroadcastNotificationsOn(): string {
