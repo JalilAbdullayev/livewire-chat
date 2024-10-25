@@ -1,5 +1,9 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use Illuminate\Broadcasting\BroadcastServiceProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
+    AppServiceProvider::class,
+    BroadcastServiceProvider::class
 ];

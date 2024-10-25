@@ -1,6 +1,7 @@
 <div x-data="{height: 0, element: document.getElementById('conversation')}" x-init="
 height = element.scrollHeight;
-$nextTick(() => element.scrollTop = height)" @scroll-bottom.window="$nextTick(() => element.scrollTop = height)"
+$nextTick(() => element.scrollTop = element.scrollHeight)"
+     @scroll-bottom.window="$nextTick(() => element.scrollTop = height)"
      class="w-full overflow-hidden">
     <div class="border-b flex flex-col overflow-y-scroll grow h-full">
         <header class="sticky w-full inset-x-0 flex py-[5px] top-0 z-10 bg-white border-b">
@@ -35,7 +36,8 @@ $nextTick(() => element.scrollTop = height)" @scroll-bottom.window="$nextTick(()
                     @if($key > 0)
                         @php($previous = $loaded->get($key-1))
                     @endif
-                    <div @class(['max-w-[85%] md:max-w-[78%] gap-2 flex w-auto relative mt-2', 'ml-auto' => $message->sender_id === auth()->user()->id])>
+                    <div wire:key="{{time().$key}}"
+                        @class(['max-w-[85%] md:max-w-[78%] gap-2 flex w-auto relative mt-2', 'ml-auto' => $message->sender_id === auth()->user()->id])>
                         <div @class(['shrink-0', 'invisible' => $previous?->sender_id === $message->sender_id,
                             'hidden' => $message->sender_id === auth()->user()->id])>
                             <x-avatar/>
